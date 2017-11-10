@@ -37,7 +37,10 @@ public class MainActivity extends BaseActivity {
                     setTheme(R.style.theme_2);
                 }
                 final View rootView = getWindow().getDecorView();
-                if(Build.VERSION.SDK_INT >= 14) {
+                if(Build.VERSION.SDK_INT < 14) {
+                    ColorUiUtil.changeTheme(rootView, getTheme());
+
+                } else {
                     rootView.setDrawingCacheEnabled(true);
                     rootView.buildDrawingCache(true);
                     final Bitmap localBitmap = Bitmap.createBitmap(rootView.getDrawingCache());
@@ -70,8 +73,6 @@ public class MainActivity extends BaseActivity {
                             }
                         }).start();
                     }
-                } else {
-                    ColorUiUtil.changeTheme(rootView, getTheme());
                 }
             }
         });

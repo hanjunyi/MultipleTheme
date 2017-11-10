@@ -3,9 +3,11 @@ package derson.com.multipletheme.colorUi.widget;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import derson.com.multipletheme.R;
 import derson.com.multipletheme.colorUi.ColorUiInterface;
 import derson.com.multipletheme.colorUi.util.ViewAttributeUtil;
 
@@ -17,6 +19,7 @@ public class ColorButton extends Button implements ColorUiInterface{
 
     private int attr_background = -1;
     private int attr_textAppreance = -1;
+    private int attr_textColor = -1;
 
     public ColorButton(Context context) {
         super(context);
@@ -26,12 +29,14 @@ public class ColorButton extends Button implements ColorUiInterface{
         super(context, attrs);
         this.attr_background = ViewAttributeUtil.getBackgroundAttibute(attrs);
         this.attr_textAppreance = ViewAttributeUtil.getTextApperanceAttribute(attrs);
+        this.attr_textColor = ViewAttributeUtil.getTextColorAttribute(attrs);
     }
 
     public ColorButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.attr_background = ViewAttributeUtil.getBackgroundAttibute(attrs);
         this.attr_textAppreance = ViewAttributeUtil.getTextApperanceAttribute(attrs);
+        this.attr_textColor = ViewAttributeUtil.getTextColorAttribute(attrs);
     }
 
     @Override
@@ -41,7 +46,14 @@ public class ColorButton extends Button implements ColorUiInterface{
 
     @Override
     public void setTheme(Resources.Theme themeId) {
-        ViewAttributeUtil.applyBackgroundDrawable(this, themeId, attr_background);
-        ViewAttributeUtil.applyTextAppearance(this, themeId, attr_textAppreance);
+        if (attr_textAppreance != -1) {
+            ViewAttributeUtil.applyTextAppearance(this, themeId, attr_textAppreance);
+        }
+        if (attr_background != -1) {
+            ViewAttributeUtil.applyBackgroundDrawable(this, themeId, attr_background);
+        }
+        if (attr_textColor != -1) {
+            ViewAttributeUtil.applyTextColor(this, themeId, attr_textColor);
+        }
     }
 }
