@@ -8,6 +8,7 @@
         android:layout_centerInParent="true"
         android:text="第二个页面"
         android:textColor="?attr/second_textcolor"
+        android:background="?second_bg"
         android:layout_width="50dip"
         android:layout_height="50dip" />
 </RelativeLayout>

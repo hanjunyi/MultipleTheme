@@ -26,6 +26,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btn = (ColorButton)findViewById(R.id.btn);
+        btn.setBackgroundResource(R.attr.main_btn_bg);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

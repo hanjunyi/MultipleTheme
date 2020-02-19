@@ -13,32 +13,33 @@ import derson.com.multipletheme.colorUi.util.ViewAttributeUtil;
  * Created by chengli on 15/6/8.
  */
 public class ColorView extends View implements ColorUiInterface {
-
-    private int attr_background = -1;
-
+    //记录当前View的background的资源id
+    private int attrBackground = -1;
     public ColorView(Context context) {
-        super(context);
+        super(context, null);
     }
-
     public ColorView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        this.attr_background = ViewAttributeUtil.getBackgroundAttibute(attrs);
+        this(context, attrs, -1);
     }
-
     public ColorView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.attr_background = ViewAttributeUtil.getBackgroundAttibute(attrs);
+        this.attrBackground = ViewAttributeUtil.getBackgroundAttibute(attrs);
     }
-
     @Override
     public View getView() {
         return this;
     }
-
+    //更新主题
     @Override
     public void setTheme(Resources.Theme themeId) {
-        if(attr_background != -1) {
-            ViewAttributeUtil.applyBackgroundDrawable(this, themeId, attr_background);
+        if(attrBackground != -1) {
+            ViewAttributeUtil.applyBackgroundDrawable(this, themeId, attrBackground);
         }
+    }
+    //更新当前View的background的资源id
+    @Override
+    public void setBackgroundResource(int resid) {
+        attrBackground = resid;
+        ViewAttributeUtil.applyBackgroundDrawable(this, getContext().getTheme(), attrBackground);
     }
 }

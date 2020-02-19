@@ -56,4 +56,10 @@ public class ColorButton extends Button implements ColorUiInterface{
             ViewAttributeUtil.applyTextColor(this, themeId, attr_textColor);
         }
     }
+
+    @Override
+    public void setBackgroundResource(int resid) {
+        attr_background = resid;
+        ViewAttributeUtil.applyBackgroundDrawable(this, getContext().getTheme(), attr_background);
+    }
 }
